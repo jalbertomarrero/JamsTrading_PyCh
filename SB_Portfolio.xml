@@ -1,0 +1,114 @@
+<MyPortfolio>
+  <update_date>2015-03-23 23:00:15</update_date>
+  <initial_capital currency="CHF">10000.0</initial_capital>
+  <total_capital currency="CHF">6000.0</total_capital>
+  <invested_capital currency="CHF">5500.0</invested_capital>
+  <not_invested_capital currency="CHF">4500.0</not_invested_capital>
+  <performance units="%">8.5</performance>
+  <portfolio>
+    <asset id="1">
+      <name>Boiron SA</name>
+      <market>Paris</market>
+      <symbol>BOI.PA</symbol>
+      <currency>EUR</currency>
+      <units>3</units>
+      <purchase_price date="2015-03-23">99.68</purchase_price>
+      <previous_close date="2015-03-23">99.68</previous_close>
+      <maximum_close date="2015-03-23">99.68</maximum_close>
+      <minimum_close date="2015-03-23">99.68</minimum_close>
+      <stop_price>99.68</stop_price>
+      <add_units_price>99.68</add_units_price>
+    </asset>
+    <asset id="2">
+      <name>eBay Inc.</name>
+      <market>NasdaqGS</market>
+      <symbol>EBAY</symbol>
+      <currency>USD</currency>
+      <units>7</units>
+      <purchase_price date="2015-04-16">57.01</purchase_price>
+      <previous_close date="2015-04-16">57.01</previous_close>
+      <maximum_close date="2015-04-16">57.01</maximum_close>
+      <minimum_close date="2015-04-16">57.01</minimum_close>
+      <stop_price>57.01</stop_price>
+      <add_units_price>57.01</add_units_price>
+    </asset>
+    <asset id="3">
+      <name>Netflix Inc.</name>
+      <market>NasdaqGS</market>
+      <symbol>NFLX</symbol>
+      <currency>USD</currency>
+      <units>12</units>
+      <purchase_price date="2015-07-16">108.35</purchase_price>
+      <previous_close date="2015-07-16">108.35</previous_close>
+      <maximum_close date="2015-07-16">108.35</maximum_close>
+      <minimum_close date="2015-07-16">108.35</minimum_close>
+      <stop_price>108.35</stop_price>
+      <add_units_price>108.35</add_units_price>
+    </asset>
+    <asset id="4">
+      <name>PayPal Holdings Inc.</name>
+      <market>NasdaqGS</market>
+      <symbol>PYPL</symbol>
+      <currency>USD</currency>
+      <units>7</units>
+      <purchase_price date="2015-07-22">38.39</purchase_price>
+      <previous_close date="2015-07-22">38.39</previous_close>
+      <maximum_close date="2015-07-22">38.39</maximum_close>
+      <minimum_close date="2015-07-22">38.39</minimum_close>
+      <stop_price>38.39</stop_price>
+      <add_units_price>38.39</add_units_price>
+    </asset>
+    <asset id="5">
+      <name>Swiss Re Ltd</name>
+      <market>VTX</market>
+      <symbol>SREN.VX</symbol>
+      <currency>CHF</currency>
+      <units>4</units>
+      <purchase_price date="2015-03-13">91.8</purchase_price>
+      <previous_close date="2015-03-13">91.8</previous_close>
+      <maximum_close date="2015-03-13">91.8</maximum_close>
+      <minimum_close date="2015-03-13">91.8</minimum_close>
+      <stop_price>91.8</stop_price>
+      <add_units_price>91.8</add_units_price>
+    </asset>
+    <asset id="6">
+      <name>Tesla Motors Inc.</name>
+      <market>NasdaqGS</market>
+      <symbol>TSLA</symbol>
+      <currency>USD</currency>
+      <units>2</units>
+      <purchase_price date="2015-09-29">245.72</purchase_price>
+      <previous_close date="2015-09-29">245.72</previous_close>
+      <maximum_close date="2015-09-29">245.72</maximum_close>
+      <minimum_close date="2015-09-29">245.72</minimum_close>
+      <stop_price>245.72</stop_price>
+      <add_units_price>245.72</add_units_price>
+    </asset>
+    <asset id="7">
+      <name>Vanguard FTSE Japan ETF</name>
+      <market>London</market>
+      <symbol>VDJP.L</symbol>
+      <currency>USD</currency>
+      <units>15</units>
+      <purchase_price date="2015-04-08">27.14</purchase_price>
+      <previous_close date="2015-04-08">27.14</previous_close>
+      <maximum_close date="2015-04-08">27.14</maximum_close>
+      <minimum_close date="2015-04-08">27.14</minimum_close>
+      <stop_price>27.14</stop_price>
+      <add_units_price>27.14</add_units_price>
+    </asset>
+    <asset id="8">
+      <name>Vanguard Health Care ETF</name>
+      <market>NYSEArca</market>
+      <symbol>VHT</symbol>
+      <currency>USD</currency>
+      <units>3</units>
+      <purchase_price date="2015-04-10">137.77</purchase_price>
+      <previous_close date="2015-04-10">137.77</previous_close>
+      <maximum_close date="2015-04-10">137.77</maximum_close>
+      <minimum_close date="2015-04-10">137.77</minimum_close>
+      <stop_price>137.77</stop_price>
+      <add_units_price>137.77</add_units_price>
+    </asset>
+  </portfolio>
+</MyPortfolio>

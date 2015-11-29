@@ -1,0 +1,36 @@
+<MyPortfolio>
+  <update_date>2015-11-22 20:39:48</update_date>
+  <initial_capital currency="CHF">10000.0</initial_capital>
+  <total_capital currency="CHF">6000.0</total_capital>
+  <invested_capital currency="CHF">5500.0</invested_capital>
+  <not_invested_capital currency="CHF">4500.0</not_invested_capital>
+  <performance units="%">8.5</performance>
+  <portfolio>
+    <asset id="1">
+      <name>Tesla Motors Inc</name>
+      <market>NasdaqGS</market>
+      <symbol>TSLA</symbol>
+      <currency>USD</currency>
+      <units>5</units>
+      <purchase_price date="2015-10-05">246.15</purchase_price>
+      <previous_close date="2015-11-20">220.009995</previous_close>
+      <maximum_close date="2015-10-05">246.15</maximum_close>
+      <minimum_close date="2015-10-30">206.929993</minimum_close>
+      <stop_price>184.6125</stop_price>
+      <add_units_price>327.3795</add_units_price>
+    </asset>
+    <asset id="2">
+      <name>Netflix Inc</name>
+      <market>NasdaqGS</market>
+      <symbol>NFLX</symbol>
+      <currency>USD</currency>
+      <units>2</units>
+      <purchase_price date="2015-08-05">123.71</purchase_price>
+      <previous_close date="2015-11-20">123.839996</previous_close>
+      <maximum_close date="2015-08-06">126.449997</maximum_close>
+      <minimum_close date="2015-09-08">94.949997</minimum_close>
+      <stop_price>94.83749775</stop_price>
+      <add_units_price>164.5343</add_units_price>
+    </asset>
+  </portfolio>
+</MyPortfolio>
