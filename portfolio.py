@@ -352,24 +352,24 @@ class MyPortfolio:
             ET.SubElement(asset_element, 'units').text = str(asset.units)
             ET.SubElement(asset_element, 'purchase_price', date=
                 asset.purchase_price['date'].strftime('%Y-%m-%d')).text = (
-                str(asset.purchase_price['value'])
+                '{0:.2f}'.format(asset.purchase_price['value'])
             )
             ET.SubElement(asset_element, 'previous_close', date=
                 asset.previous_close['date'].strftime('%Y-%m-%d')).text = (
-                str(asset.previous_close['value'])
+                '{0:.2f}'.format(asset.previous_close['value'])
             )
             ET.SubElement(asset_element, 'maximum_close', date=
                 asset.maximum_close['date'].strftime('%Y-%m-%d')).text = (
-                str(asset.maximum_close['value'])
+                '{0:.2f}'.format(asset.maximum_close['value'])
             )
             ET.SubElement(asset_element, 'minimum_close', date=
                 asset.minimum_close['date'].strftime('%Y-%m-%d')).text = (
-                str(asset.minimum_close['value'])
+                '{0:.2f}'.format(asset.minimum_close['value'])
             )
-            ET.SubElement(asset_element, 'stop_price').text = str(
+            ET.SubElement(asset_element, 'stop_price').text = '{0:.2f}'.format(
                 asset.stop_price)
-            ET.SubElement(asset_element, 'add_units_price').text = str(
-                asset.add_units_price)
+            ET.SubElement(asset_element, 'add_units_price').text = '{0:.2f}'.\
+                format(asset.add_units_price)
 
         tree = ET.ElementTree(root)
 
