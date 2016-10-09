@@ -33,7 +33,7 @@ class PortfolioAsset:
             # currency
             currency = get_text_from_xml(element,'currency')
             # units
-            units = int(get_text_from_xml(element,'units'))
+            units = int(get_text_from_xml(element, 'units'))
             # purchase_price
             purchase_price = get_dict_from_xml(element,'purchase_price')
             # previous_close
@@ -158,12 +158,12 @@ class MyPortfolio:
             output_message.append('Capital lower or equal 0')
         else:
             self.initial_capital['value'] += new_capital
-            ouput_message.append('Capital increased. New initial capital = {}'
+            output_message.append('Capital increased. New initial capital = {}'
                                  ' {}'.format(self.initial_capital['value'],
                                               self.initial_capital['currency']))
             if update_xml:
                 output_message.append(self.update_xml_file())
-        return output_mesage
+        return output_message
 
     def withdraw_capital(self, remove_capital, update_xml=False):
         """ Reduce portfolio capital for investment.
@@ -178,15 +178,15 @@ class MyPortfolio:
         """
         output_message = []
         if remove_capital > self.not_invested_capital['value']:
-            ouput_message.append('Capital higher than capital in account')
+            output_message.append('Capital higher than capital in account')
         else:
             self.initial_capital['value'] -= remove_capital
-            ouput_message.append('Capital reduced. New initial capital = {} {}'
+            output_message.append('Capital reduced. New initial capital = {} {}'
                                  .format(self.initial_capital['value'],
                                          self.initial_capital['currency']))
             if update_xml:
                 output_message.append(self.update_xml_file())
-        return output_mesage
+        return output_message
 
     def search_asset(self, asset_id_dict):
         """ Search an asset in the portfolio
@@ -552,3 +552,20 @@ def get_dict_from_xml(element,field_text):
         output_dict['date'] = datetime.strptime(child.attrib['date'],'%Y-%m-%d')
         output_dict['value'] = float(child.text)
         return output_dict
+
+def update_hist_prices(myportfolio,provider='Yahoo'):
+    """  Update or create csv file with historical prices for all assets
+    in myportfolio from external provider
+
+    :param myportfolio: MyPortofolio class with all assets
+    :param provider: External provider of data.
+    :return:
+    """
+
+    for asset in myportfolio.portfolio:
+        # read csv: symbol.csv
+        # if csv doesn't exist-> create csv
+        # try to get data from Yahoo/provider
+        # compare last trade date with last date in csv
+        # update historical prices
+        # write csv
