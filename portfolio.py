@@ -58,7 +58,7 @@ class PortfolioAsset:
         self.maximum_close = maximum_close
         self.minimum_close = minimum_close
         self.stop_price = stop_price
-        self.add_unit_price = add_units_price
+        self.add_units_price = add_units_price
 
     def value(self):
         """  Returns current market value """
