@@ -58,7 +58,7 @@ class PortfolioAsset:
         self.maximum_close = maximum_close
         self.minimum_close = minimum_close
         self.stop_price = stop_price
-        self.add_unit_price = add_units_price
+        self.add_units_price = add_units_price
 
     def value(self):
         """  Returns current market value """
@@ -314,7 +314,8 @@ class MyPortfolio:
         update_date = datetime.now()
         root = ET.Element('MyPortfolio')
         """ update_date """
-        ET.SubElement(root, 'update_date').text = str(update_date).split('.')[0]
+        ET.SubElement(root, 'update_date').text = \
+            update_date.strftime('%Y-%m-%d--%H-%M-%S')
         """ initial_capital """
         ET.SubElement(root, 'initial_capital',
                       currency=self.initial_capital['currency']).text = str(
@@ -398,70 +399,63 @@ class MyPortfolio:
 
         output_message = []
 
+        today = datetime.now()
+
         for asset in self.portfolio:
             if provider == 'Yahoo':
                 try:
-                    # get last trade date of the asset
-                    last_trade_date_str = \
-                        ys.get_last_trade_date(asset.symbol).replace('"','')
-                    if last_trade_date_str == 'N/A':
+                    if ys.get_price(asset.symbol) == 'N/A':
                         output_message.append('{} symbol ({}) not found'.
-                                              format(asset.name,asset.symbol))
+                                              format(asset.name, asset.symbol))
                         continue
-                    else:
-                        last_trade_date = \
-                            datetime.strptime(last_trade_date_str,'%m/%d/%Y')
+                    elif today <= asset.previous_close['date']:
+                        output_messsage.append('{} is already updated',
+                                               format(asset.name))
+                        continue
+
+                    # get historical prices from latest updated until today
+                    hist_dict = \
+                        ys.get_historical_prices(asset.symbol,
+                                                 asset.previous_close['date']
+                                                 .strftime('%Y-%m-%d'),
+                                                 today.strftime('%Y-%m-%d'))
+                    # parse all dictionary
+                    for td, tv in hist_dict.items():
+                        item_date = datetime.strptime(td, '%Y-%m-%d')
+                        item_close = float(tv['Close'])
+
+                        # previous close
+                        if item_date > asset.previous_close['date']:
+                            asset.previous_close['date'] = item_date
+                            asset.previous_close['value'] = item_close
+                            output_message.append('Previous close has been '
+                                                  'updated - Date: {} - '
+                                                  'Close: {}'.
+                                                  format(item_date,
+                                                         item_close))
+                        # maximum close
+                        if item_close > asset.maximum_close['value']:
+                            # new maximum close found
+                            asset.maximum_close['date'] = item_date
+                            asset.maximum_close['value'] = item_close
+                            output_message.append('Maximum close has been '
+                                                  'updated - Date: {} - '
+                                                  'Close: {}'.
+                                                  format(item_date,
+                                                         item_close))
+                        if item_close < asset.minimum_close['value']:
+                            # new maximum close found
+                            asset.minimum_close['date'] = item_date
+                            asset.minimum_close['value'] = item_close
+                            output_message.append('Minimum close has been '
+                                                  'updated - Date: {} - '
+                                                  'Close: {}'.
+                                                  format(item_date,
+                                                         item_close))
+
                 except:
                     output_message.append('Data of {} not available in '
-                                              'provider'.format(asset.name))
-                    continue
-
-
-                if last_trade_date > asset.previous_close['date']:
-
-                    try:
-                        # update maximum_close and minimum_close
-                        hist_dict = ys.get_historical_prices(
-                            asset.symbol,
-                            asset.previous_close['date'].strftime('%Y-%m-%d'),
-                            last_trade_date.strftime('%Y-%m-%d'))
-                        # parse all dictionary
-                        for td, tv in hist_dict.items():
-                            item_date = datetime.strptime(td, '%Y-%m-%d')
-                            item_close = float(tv['Close'])
-
-                            # previous close
-                            if item_date > asset.previous_close['date']:
-                                asset.previous_close['date'] = item_date
-                                asset.previous_close['value'] = item_close
-                                output_message.append('Previous close has been '
-                                                    'updated - Date: {} - '
-                                                    'Close: {}'.
-                                                    format(item_date,
-                                                           item_close))
-                            # maximum close
-                            if item_close > asset.maximum_close['value']:
-                                # new maximum close found
-                                asset.maximum_close['date'] = item_date
-                                asset.maximum_close['value'] = item_close
-                                output_message.append('Maximum close has been '
-                                                    'updated - Date: {} - '
-                                                    'Close: {}'.
-                                                    format(item_date,
-                                                           item_close))
-                            if item_close < asset.minimum_close['value']:
-                                # new maximum close found
-                                asset.minimum_close['date'] = item_date
-                                asset.minimum_close['value'] = item_close
-                                output_message.append('Minimum close has been '
-                                                    'updated - Date: {} - '
-                                                    'Close: {}'.
-                                                    format(item_date,
-                                                           item_close))
-
-                    except:
-                        output_message.append('Data of {} not available in '
-                                              'provider'.format(asset.name))
+                                          'provider'.format(asset.name))
 
         # update xml
         if update_xml:
@@ -561,8 +555,9 @@ def update_hist_prices(myportfolio,provider='Yahoo'):
     :param provider: External provider of data.
     :return:
     """
+    return None
 
-    for asset in myportfolio.portfolio:
+    #for asset in myportfolio.portfolio:
         # read csv: symbol.csv
         # if csv doesn't exist-> create csv
         # try to get data from Yahoo/provider
